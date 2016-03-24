@@ -5,45 +5,85 @@ include('config/dbconnect.php');
 class Game{
 
 
-	function list_games(){
+	//
+	function list_games($params, $limit, $offset){
 
+		$sqladd = "";
+
+		$allfields = array('gameid','releasedate','title','system','status','franchise','developer','publisher','genre','boxfront','beaten','currentbacklog','backlog','neon','twodee','retro','neoncade','elite','eliterank','the20v2');
 		$all_games = array();
 
+		if(count($params)>0){
+			foreach($params as $params_key => $params_value)
+
+			$sqladd .= "and " . $params_key . " = '".$params_value."'";
+		}
+
+
+
 		$sql_game = "
-		select * from games
+		SELECT gameid, releasedate, title, system, status, franchise, developer, publisher, genre, boxfront, beaten, currentbacklog, backlog, neon, twodee, retro, neoncade, elite, eliterank, the20v2 FROM games
 		where 1 = 1
-		order by game_id DESC
+		$sqladd
+		order by gameid DESC
+		limit 100
 		";
 
 		$result_game = mysql_query($sql_game);
 
 		while($row_game=mysql_fetch_array($result_game)){
-			$game_id = $row_game['game_id'];
-			$game_name = $row_game['game_name'];
-			$game_image = $row_game['game_image'];
-			$status = $row_game['status'];
+			$thisgamearray = array();
+			foreach($allfields as $thisfield){
+				$$thisfield = $row_game[$thisfield];
+				$thisgamearray[$thisfield] = $$thisfield;
+			}
 
-			$all_games[] = array('game_id'=>$game_id, 'game_name'=>$game_name, 'game_image'=>$game_image, 'status'=>$status);
+
+			$all_games[] = $thisgamearray;
 		}
 
 		return $all_games;
 	}
 
-	function get_game_by_id($game_id){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	function get_game_by_id($gameid){
 		$sql_game = "
 		select * from games
-		where game_id = '$game_id'
+		where gameid = '$gameid'
 		limit 1
 		";
 
 		$result_game = mysql_query($sql_game);
 
 		while($row_game=mysql_fetch_array($result_game)){
-			$game_id = $row_game['game_id'];
+			$gameid = $row_game['gameid'];
 			$game_name = $row_game['game_name'];
 			$game_image = $row_game['game_image'];
 			$status = $row_game['status'];
-			$return_game = array('game_id'=>$game_id, 'game_name'=>$game_name, 'game_image'=>$game_image, 'status'=>$status);
+			$return_game = array('gameid'=>$gameid, 'game_name'=>$game_name, 'game_image'=>$game_image, 'status'=>$status);
 		}
 
 		return $return_game;

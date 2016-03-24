@@ -3,6 +3,7 @@
 error_reporting(E_ALL & ~E_NOTICE);
 ?>
 <?php include('Game.php'); ?>
+<?php include('config/functions.php'); ?>
 <?php include('components/header.php'); ?>
 <?php include('components/menu.php'); ?>
 
@@ -363,11 +364,6 @@ $statussdd = buildlist($statuss, "dd", "status");
 		</form>
 	</div>
 
-	<div class="leftside_cell">
-		<h2><a href="index.php?power99=yes">POWER99</a></h2>
-		<h2><a href="index.php?future=yes">FUTURE</a></h2>
-	</div>
-
 
 </div>
 
@@ -378,4 +374,3 @@ $statussdd = buildlist($statuss, "dd", "status");
 ?>
 
 <?php include('components/footer.php'); ?>
-<?php include('config/functions.php'); ?>
