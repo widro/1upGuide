@@ -6,6 +6,7 @@ class Game{
 
 
 	function list_games($params, $limit, $offset){
+	$link = mysqli_connect("localhost", "root", "", "1upguide");
 
 		$sqladd = "";
 
@@ -28,9 +29,9 @@ class Game{
 		limit 100
 		";
 
-		$result_game = mysql_query($sql_game);
+		$result_game = mysqli_query($link, $sql_game);
 
-		while($row_game=mysql_fetch_array($result_game)){
+		while($row_game=mysqli_fetch_array($result_game, MYSQLI_BOTH)){
 			$thisgamearray = array();
 			foreach($allfields as $thisfield){
 				$$thisfield = $row_game[$thisfield];
@@ -49,6 +50,7 @@ class Game{
 
 
 	function list_parameter($parameter, $limit){
+	$link = mysqli_connect("localhost", "root", "", "1upguide");
 
 		$output = array();
 
@@ -68,9 +70,9 @@ class Game{
 		limit $limit
 		";
 
-		$result = mysql_query($sql) or die($sql);
+		$result = mysqli_query($link, $sql);
 
-		while($row = mysql_fetch_array($result)){
+		while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 			$entry[] = array();
 			$entry['parameter'] = $row[$parameter];
 			$entry['total'] = $row['total'];

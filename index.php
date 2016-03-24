@@ -5,7 +5,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 <?php include('Game.php'); ?>
 <?php include('config/functions.php'); ?>
 <?php include('components/header.php'); ?>
-<?php include('components/menu.php'); ?>
+<?php //include('components/menu.php'); ?>
 
 
 <div class="body_wrap">
@@ -23,9 +23,9 @@ WHERE gameid = '$gameid'
 limit 1;
 ";
 
-$result = mysql_query($sql) or die($sql);
+$result = mysqli_query($link, $sql) or die($sql);
 
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 	$single = gamecell($row, "single");
 	$franchise = $row['franchise'];
 	$genre = $row['genre'];
@@ -48,9 +48,9 @@ order by releasedate DESC
 limit 10;
 ";
 
-$result = mysql_query($sql) or die($sql);
+$result = mysqli_query($link, $sql) or die($sql);
 
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 	$cell = gamecell($row, "gamecell");
 	$cells .= $cell;
 }
@@ -71,9 +71,9 @@ order by releasedate DESC
 limit 10;
 ";
 
-$result = mysql_query($sql) or die($sql);
+$result = mysqli_query($link, $sql) or die($sql);
 
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 	$cell = gamecell($row, "gamecell");
 	$cells2 .= $cell;
 }
@@ -222,9 +222,9 @@ $addsql
 
 echo $sql;
 
-$result = mysql_query($sql) or die($sql);
+$result = mysqli_query($link, $sql) or die($sql);
 
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 	$cell = gamecell($row, "gamecell");
 	$cells .= $cell;
 }

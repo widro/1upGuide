@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.php">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">TickStats</a></li>
+        <li><a href="listing.php">Listing</a></li>
 
 
 			<?php
@@ -25,7 +25,7 @@
 				foreach($menu_types as $type){
 					echo '
 			        <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$type.' <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="text-transform: capitalize;">'.$type.' <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 					';
 					$parameters = $game->list_parameter($type, 20);

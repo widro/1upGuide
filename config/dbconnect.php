@@ -1,15 +1,12 @@
 <?php
-$thisurl =  $_SERVER['HTTP_HOST'];
+global $link;
+$thisurl = $_SERVER['HTTP_HOST'];
 
 if(($thisurl=="www.1upguide.com")||($thisurl=="1upguide.com")){
-	$dbname = "db54729_1upguide";
-	$connection = mysql_connect("internal-db.s54729.gridserver.com", "db54729", "O47jhg(%vfoyh") or die("Couldn't connect.");
+	$link = mysqli_connect("internal-db.s54729.gridserver.com", "db54729", "O47jhg(%vfoyh", "db54729_1upguide");
 }
 else{
-	$dbname = "1upguide";
-	$connection = mysql_connect("localhost", "root", "") or die("Couldn't connect.");
+	$link = mysqli_connect("localhost", "root", "", "1upguide");
 }
-$db = mysql_select_db($dbname) or die("Couldn't select database");
-
 
 ?>

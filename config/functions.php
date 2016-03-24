@@ -1,5 +1,6 @@
 <?php
 //functions
+
 function gamecell($gamearray, $type){
 	$gameid = $gamearray['gameid'];
 	$releasedate = $gamearray['releasedate'];
@@ -98,6 +99,7 @@ function assignvalue($var, $var2 = "", $default){
 }
 
 function getunique($type, $sort){
+$link = mysqli_connect("localhost", "root", "", "1upguide");
 
 	$output = array();
 
@@ -112,9 +114,9 @@ function getunique($type, $sort){
 	ORDER BY total DESC
 	";
 
-	$result = mysql_query($sql) or die($sql);
+	$result = mysqli_query($link, $sql) or die($sql);
 
-	while($row = mysql_fetch_array($result)){
+	while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 		$entry[] = array();
 		$entry['item'] = $row[$type];
 		$entry['total'] = $row['total'];
@@ -151,6 +153,7 @@ function space20($val){
 
 
 function get_systemcode($system){
+$link = mysqli_connect("localhost", "root", "", "1upguide");
 	$sql = "
 	SELECT systemcode
 	FROM systems
@@ -158,14 +161,15 @@ function get_systemcode($system){
 	LIMIT 1
 	";
 
-	$result = mysql_query($sql) or die($sql);
+	$result = mysqli_query($link, $sql) or die($sql);
 
-	while($row = mysql_fetch_array($result)){
+	while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 		return $row['systemcode'];
 	}
 }
 
 function get_system($systemcode){
+$link = mysqli_connect("localhost", "root", "", "1upguide");
 	$sql = "
 	SELECT system
 	FROM systems
@@ -173,9 +177,9 @@ function get_system($systemcode){
 	LIMIT 1
 	";
 
-	$result = mysql_query($sql) or die($sql);
+	$result = mysqli_query($link, $sql) or die($sql);
 
-	while($row = mysql_fetch_array($result)){
+	while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 		return $row['system'];
 	}
 }
