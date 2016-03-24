@@ -5,7 +5,6 @@ include('config/dbconnect.php');
 class Game{
 
 
-	//
 	function list_games($params, $limit, $offset){
 
 		$sqladd = "";
@@ -49,11 +48,41 @@ class Game{
 
 
 
+	function list_parameter($parameter, $limit){
+
+		$output = array();
+
+		if(!$limit){
+			$limit = "10";
+		}
+
+		if(!$parameter){
+			$parameter = "developer";
+		}
+
+		$sql = "
+		SELECT distinct($parameter), count($parameter) as total
+		FROM games
+		GROUP BY $parameter
+		ORDER BY total DESC
+		limit $limit
+		";
+
+		$result = mysql_query($sql) or die($sql);
+
+		while($row = mysql_fetch_array($result)){
+			$entry[] = array();
+			$entry['parameter'] = $row[$parameter];
+			$entry['total'] = $row['total'];
+			$output[] =$entry;
+		}
+
+		return $output;
 
 
 
 
-
+	}
 
 
 

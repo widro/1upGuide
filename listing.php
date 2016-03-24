@@ -1,3 +1,7 @@
+<?php
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
+?>
 <?php include('Game.php'); ?>
 <html>
 <head>
@@ -15,27 +19,22 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<script src="/ticks/js/main.js"></script>
-<link rel='stylesheet' id='admin-bar-css'  href='/ticks/css/mainstyles.css' type='text/css' media='all' />
-
-
-
-
-
 
 </head>
 
 <body>
 <?php include('components/menu.php'); ?>
 
-
-
-
 <?php
+	$params = array();
 
+	$allfields = array('gameid','releasedate','title','system','status','franchise','developer','publisher','genre','boxfront','beaten','currentbacklog','backlog','neon','twodee','retro','neoncade','elite','eliterank','the20v2');
 
-	$params = array(developer=>'nintendo', genre=>'2d_platform');
-
+	foreach($allfields as $thisfield){
+		if($_GET[$thisfield]){
+			$params[$thisfield] = $_GET[$thisfield];
+		}
+	}
 
 	$game = new Game;
 	$allgames = $game->list_games($params, $limit, $offset);
@@ -49,16 +48,14 @@
 			<div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#">
                     <img class="img-responsive quicktickbutton" src="'.$boxfront.'" alt="" id="id'.$gameid.'|cat2|level_complete" alt="'.$title.'" style="height:250px;">
+                    <br>
+                    '.$title.'
                 </a>
             </div>
 			';
 	}
 
 ?>
-
-
-
-
 
 
 </body>
