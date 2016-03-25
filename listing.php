@@ -33,11 +33,29 @@ error_reporting(E_ALL & ~E_NOTICE);
 	foreach($allfields as $thisfield){
 		if($_GET[$thisfield]){
 			$params[$thisfield] = $_GET[$thisfield];
+			$queryvars .= '&'. $thisfield . '=' . $_GET[$thisfield];
 		}
 	}
 
+	if($_GET["offset"]){
+		$offset = $_GET["offset"];
+	}
+	else{
+		$offset = 0;
+	}
+
+
+	if($_GET["limit"]){
+		$limit = $_GET["limit"];
+	}
+	else{
+		$limit = 100;
+	}
+
+
 	$game = new Game;
 	$allgames = $game->list_games($params, $limit, $offset);
+	$totalgames = count($allgames);
 
 	foreach($allgames as $thisgame){
 		$gameid = $thisgame['gameid'];
@@ -54,6 +72,31 @@ error_reporting(E_ALL & ~E_NOTICE);
             </div>
 			';
 	}
+
+	echo '
+	<div class="clear" style="clear:both;"></div>
+	';
+
+
+	//show next
+	if($limit==$totalgames){
+		$offsetnext = $offset+$limit;
+		echo '
+		<a href="listing.php?offset='.$offsetnext.'&limit='.$limit.$queryvars.'">   NEXT   </a>
+		';
+	}
+
+	//show next
+	if($offset>0){
+		$offsetprev = $offset-$limit;
+		echo '
+		<a href="listing.php?offset='.$offsetprev.'&limit='.$limit.$queryvars.'">   PREVIOUS   </a>
+		';
+	}
+
+
+
+
 
 ?>
 

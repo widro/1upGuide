@@ -26,7 +26,7 @@ class Game{
 		where 1 = 1
 		$sqladd
 		order by gameid DESC
-		limit 100
+		limit $limit offset $offset
 		";
 
 		$result_game = mysqli_query($link, $sql_game);
