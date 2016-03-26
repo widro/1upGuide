@@ -20,11 +20,13 @@ class Game{
 		}
 
 
+		$today = date("Y-m-d");
 
 		$sql_game = "
 		SELECT gameid, releasedate, title, system, status, franchise, developer, publisher, genre, boxfront, beaten, currentbacklog, backlog, neon, twodee, retro, neoncade, elite, eliterank, the20v2 FROM games
 		where 1 = 1
 		$sqladd
+		and releasedate <= '".$today."'
 		order by gameid DESC
 		limit $limit offset $offset
 		";
