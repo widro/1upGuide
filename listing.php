@@ -25,6 +25,25 @@ error_reporting(E_ALL & ~E_NOTICE);
 <body>
 <?php include('components/menu.php'); ?>
 
+
+<div class="container">
+	<div class="col-lg-2" style="background:#ff0000;">
+
+
+MENU
+
+<a href="listing.php?neoncade=neoncade">NeonCade</a>
+<br><br>
+<a href="listing.php?status=OwnedPhysical&system=Playstation_Vita">Physical Vita</a>
+<br><br>
+<a href="listing.php?status=Checklist&system=Playstation_Vita">Checklist Vita</a>
+<br><br>
+
+
+
+	</div>
+	<div class="col-lg-10">
+
 <?php
 	$params = array();
 
@@ -63,9 +82,9 @@ error_reporting(E_ALL & ~E_NOTICE);
 		$boxfront = $thisgame['boxfront'];
 
 		echo'
-			<div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			<div class="col-lg-3 col-md-4 col-xs-6 thumb" style="height:350px">
                 <a class="thumbnail" href="#">
-                    <img class="img-responsive quicktickbutton" src="'.$boxfront.'" alt="" id="id'.$gameid.'|cat2|level_complete" alt="'.$title.'" style="height:250px;">
+                    <img class="img-responsive quicktickbutton" src="'.$boxfront.'" alt="" id="id'.$gameid.'|cat2|level_complete" alt="'.$title.'">
                     <br>
                     '.$title.'
                 </a>
@@ -99,7 +118,8 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 
 ?>
-
+</div>
+</div>
 
 </body>
 </html>
