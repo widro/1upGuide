@@ -27,7 +27,7 @@ class Game{
 		where 1 = 1
 		$sqladd
 		and releasedate <= '".$today."'
-		order by gameid DESC
+		order by releasedate DESC
 		limit $limit offset $offset
 		";
 
