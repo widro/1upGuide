@@ -1,11 +1,10 @@
 <?php
-//db connect
-$servername = "internal-db.s222827.gridserver.com";
-$database = "db222827_widroverse";
-$username = "db222827";
-$password = "llFt[8H,1d";
 
-$conn = mysqli_connect($servername, $username, $password, $database);
+include('/nfs/c12/h02/mnt/222827/domains/widroverse.com/html/includes/dbconnect.php');
+
+if(!$conn){
+	return "database connect error";
+}
 
 //first get date of most recent mix
 $sql_mixdate = "
@@ -176,6 +175,28 @@ $output_mixes .= "</ul>";
 
 
 
+
+    <div class="container">
+		<div class="row">
+			<h1>Widroverse Brands</h1>
+			<div class="col-lg-12">
+				<h2>Neon Lounge</h1>
+			</div>
+
+		</div>
+    </div>
+
+
+
+    <div class="container">
+		<div class="row">
+			<h1>Franchises</h1>
+			<div class="col-lg-12">
+				<h2>Neon Lounge</h1>
+			</div>
+
+		</div>
+    </div>
 
 
 
